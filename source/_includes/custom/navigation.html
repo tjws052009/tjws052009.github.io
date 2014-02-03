@@ -1,0 +1,20 @@
+<div id="main-nav">
+    <nav>
+        <ul>
+        	<li>
+        		{% if site.blog_index_asides.size %}
+					{% include_array blog_index_asides %}
+				{% else %}
+					{% include_array default_asides %}
+				{% endif %}
+        	</li>
+        	<li>
+        		<ul>
+              <li>Projects - <a href="http://tsugi2009.com" target="_blank">tsugi2009.com</a>
+        			<li>Github - <a href="http://www.github.com/tjws052009" target="_blank">github.com/tjws052009</a></li>
+              <li>Twitter - <a href="http://www.twitter.com/tsugi2009" target="_blank">@tsugi2009</a></li>
+        		</ul>
+        	</li>
+        </ul>
+    </nav>
+</div>
