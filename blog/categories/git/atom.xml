@@ -4,7 +4,7 @@
   <title><![CDATA[Category: git | Quick Memos]]></title>
   <link href="http://tjws052009.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-02-03T16:49:35+09:00</updated>
+  <updated>2014-02-03T16:54:32+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -18,9 +18,7 @@
     <link href="http://tjws052009.github.io/blog/2014/02/03/my-first-post/"/>
     <updated>2014-02-03T12:01:37+09:00</updated>
     <id>http://tjws052009.github.io/blog/2014/02/03/my-first-post</id>
-    <content type="html"><![CDATA[<h2>The <code>git log</code> command</h2>
-
-<p>The <code>git log</code> command has a couple of useful flags, but I never can remember what they are.</p>
+    <content type="html"><![CDATA[<p>The <code>git log</code> command has a couple of useful flags, but I never can remember what they are.</p>
 
 <p>Therefore, I decided to use the git aliases to create an alias command which
 would include the flags on default.</p>
