@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Quick Memos]]></title>
-  <link href="http://tjws052009.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: git | Quick Memos]]></title>
+  <link href="http://tjws052009.github.io/blog/categories/git/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
   <updated>2014-02-03T16:42:24+09:00</updated>
   <id>http://tjws052009.github.io/</id>
@@ -25,17 +25,14 @@
 <p>Therefore, I decided to use the git aliases to create an alias command which
 would include the flags on default.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># ~/.gitconfig
-</span><span class='line'>
-</span><span class='line'>[alias]
-</span><span class='line'>  lg = 'log --decorate'
-</span><span class='line'>  </span></code></pre></td></tr></table></div></figure>
+<p>```</p>
 
+<h1>~/.gitconfig</h1>
+
+<p>[alias]
+  lg = &lsquo;log &mdash;decorate&rsquo;</p>
+
+<p>```</p>
 
 <p>By adding the lines above, <code>git lg</code> would be identical to calling <code>git log
 --drecorate</code>.</p>
