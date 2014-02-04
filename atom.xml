@@ -4,7 +4,7 @@
   <title><![CDATA[Quick Memos]]></title>
   <link href="http://tjws052009.github.io/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-02-03T16:57:05+09:00</updated>
+  <updated>2014-02-04T19:15:06+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -12,6 +12,234 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[get and post method for sinatra]]></title>
+    <link href="http://tjws052009.github.io/blog/2014/02/04/get-and-post-method-for-sinatra/"/>
+    <updated>2014-02-04T18:17:18+09:00</updated>
+    <id>http://tjws052009.github.io/blog/2014/02/04/get-and-post-method-for-sinatra</id>
+    <content type="html"><![CDATA[<p>Sinatraでエンドポイントを用意して、リアルタイムにIDの重複チェックとかしたいと思い、ajaxで使用する前提の物を書いてみた。</p>
+
+<p>id の値をサーバーにPOSTし、結果が json で返ってくるようにしてみた。
+今回は開発環境でドメインまたいでテストを行えたらいいなと思い
+jsonpで返そうと当初は考えていた。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># 頭の中ではこんな感じになればいいなと
+</span><span class='line'>$ curl -d 'id=testtsugi01' http://test.tsugi2009.com/verify_id
+</span><span class='line'>#  =&gt; verify({"status": "ok", error: []})</span></code></pre></td></tr></table></div></figure>
+
+
+<p>で、こんなコードを書いてみた</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># sinatra.rb</span>
+</span><span class='line'><span class="n">post</span> <span class="s1">&#39;/verify_id&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">verify_id</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="s1">&#39;id&#39;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">return</span> <span class="s2">&quot;verify(</span><span class="si">#{</span><span class="p">\{</span><span class="ss">status</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span> <span class="ss">error</span><span class="p">:</span> <span class="o">[]</span><span class="si">}</span><span class="s2">.to_json})&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="err">#</span> <span class="nx">test</span><span class="p">.</span><span class="nx">js</span>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">form</span> <span class="nx">action</span><span class="o">=</span><span class="s2">&quot;http://test.tsugi2009.com/verify_id&quot;</span> <span class="nx">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;piyof&quot;</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;id&quot;</span> <span class="o">/&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="o">/&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/form&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#piyof_submit&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://test.tsugi2009.com/verify_id&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">data</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#piyof&#39;</span><span class="p">).</span><span class="nx">serialize</span><span class="p">(),</span>
+</span><span class='line'>      <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;jsonp&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">jsonpCallback</span><span class="o">:</span> <span class="s1">&#39;verify&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">})</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>とりあえず、 <a href="http://test.tsugi2009.com/">http://test.tsugi2009.com/</a> 下なら大丈夫だけど <a href="http://tsugi2009.com/">http://tsugi2009.com/</a> とかドメインまたぐとちゃんと動かない。
+POSTのはずが、GETでパラメーターを送信してたり。（それで 404 が返ってきて一瞬焦った）</p>
+
+<p>良く考えると（良く考えなくても）、そもそもクロスドメイン制約でjsonpのPOSTとかできへんやん・・・
+しかも、POST前提に組んでたので、GETになったjsonp リクエストには対応出来ず 404 が返る状況に。</p>
+
+<p>とりあえず、色々諦めて、開発中はjsonpを使って、本番ではjsonにしてもらうっていう綱渡りような事に。
+ただし、SinatraでひとつのエンドポイントをGETとPOSTに対応するため、似たようなコードを二回書く事になるのか、と思いGETとPOSTに対応した物が出来ないか調べてみた。そしてここに行き着く。</p>
+
+<p><a href="http://ujihisa.blogspot.jp/2009/11/accepting-both-get-and-post-method-in.html">Accepting Both Get And Post Method in Sinatra</a></p>
+
+<p>出来るならやるしないですよね。言うことで、それも含め実装。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># sinatra.rb</span>
+</span><span class='line'><span class="k">module</span> <span class="nn">Sinatra</span>
+</span><span class='line'>  <span class="k">module</span> <span class="nn">GetOrPost</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">get_or_post</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">opts</span><span class="o">=</span><span class="p">{},</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">opts</span><span class="o">=</span><span class="p">{},</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">opts</span><span class="o">=</span><span class="p">{},</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">register</span> <span class="no">GetOrPost</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">get_or_post</span> <span class="s1">&#39;/verify_id&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">verify_id</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="s1">&#39;id&#39;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="c1"># 本当に正しくPOSTされたら json っていう前提で書いてます。gkbr</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">{</span><span class="ss">status</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span> <span class="ss">error</span><span class="p">:</span> <span class="o">[]</span><span class="p">}</span><span class="o">.</span><span class="n">to_json</span> <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">request_method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="s2">&quot;verify(</span><span class="si">#{</span><span class="p">\{</span><span class="ss">status</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span> <span class="ss">error</span><span class="p">:</span> <span class="o">[]</span><span class="si">}</span><span class="s2">.to_json})&quot;</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="err">#</span> <span class="nx">prod</span><span class="p">.</span><span class="nx">js</span>
+</span><span class='line'><span class="c1">// 本番用 同じ、 tsugi2009.comの下で動いてるはず</span>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">form</span> <span class="nx">action</span><span class="o">=</span><span class="s2">&quot;http://tsugi2009.com/verify_id&quot;</span> <span class="nx">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;piyof&quot;</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;id&quot;</span> <span class="o">/&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="o">/&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/form&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#piyof_submit&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://tsugi2009.com/verify_id&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">data</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#piyof&#39;</span><span class="p">).</span><span class="nx">serialize</span><span class="p">(),</span>
+</span><span class='line'>      <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;json&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">})</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/script&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="err">#</span> <span class="nx">test</span><span class="p">.</span><span class="nx">js</span>
+</span><span class='line'><span class="c1">// テスト用。 test.tsugi2009.com から叩かれるとは限らない</span>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">form</span> <span class="nx">action</span><span class="o">=</span><span class="s2">&quot;http://test.tsugi2009.com/verify_id&quot;</span> <span class="nx">method</span><span class="o">=</span><span class="s2">&quot;POST&quot;</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&quot;piyof&quot;</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="nx">name</span><span class="o">=</span><span class="s2">&quot;id&quot;</span> <span class="o">/&gt;</span>
+</span><span class='line'>  <span class="o">&lt;</span><span class="nx">input</span> <span class="nx">type</span><span class="o">=</span><span class="s2">&quot;submit&quot;</span> <span class="o">/&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/form&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+</span><span class='line'>  <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#piyof_submit&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span><span class='line'>      <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">url</span><span class="o">:</span> <span class="s2">&quot;http://test.tsugi2009.com/verify_id&quot;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">data</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#piyof&#39;</span><span class="p">).</span><span class="nx">serialize</span><span class="p">(),</span>
+</span><span class='line'>      <span class="nx">dataType</span><span class="o">:</span> <span class="s1">&#39;jsonp&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">jsonpCallback</span><span class="o">:</span> <span class="s1">&#39;verify&#39;</span><span class="p">,</span>
+</span><span class='line'>      <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nx">console</span><span class="p">.</span><span class="nx">debug</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>    <span class="p">})</span>
+</span><span class='line'>  <span class="p">});</span>
+</span><span class='line'><span class="o">&lt;</span><span class="err">/script&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>やっと動いた。ajaxで色々と忘れそうなので、この実装をどうにかしたいと思ってるけど、どうしよう。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[My first post]]></title>
