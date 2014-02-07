@@ -4,7 +4,7 @@
   <title><![CDATA[Quick Memos]]></title>
   <link href="http://tjws052009.github.io/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-02-04T19:15:06+09:00</updated>
+  <updated>2014-02-07T14:21:35+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[padrinoを試す]]></title>
+    <link href="http://tjws052009.github.io/blog/2014/02/07/padrinowoshi-su/"/>
+    <updated>2014-02-07T14:15:44+09:00</updated>
+    <id>http://tjws052009.github.io/blog/2014/02/07/padrinowoshi-su</id>
+    <content type="html"><![CDATA[<p>ちょっと試しに padrino を使ってみようかと。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ gem install padrino
+</span><span class='line'>
+</span><span class='line'>$ padrino g project hottmp -d activerecord -a mysql -s jquery -e erb -c compass -t rspec</span></code></pre></td></tr></table></div></figure>
+
+
+<p>とりあえずコレで指定した物が入りました。</p>
+
+<p>個人的にあんまり Haml　とかのテンプレートエンジンが好きでなくて、erb
+あたりがちょうどしっくりきます。Coffee より jQuery だったり。</p>
+
+<p>これってどうなんでしょうね？</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[get and post method for sinatra]]></title>
