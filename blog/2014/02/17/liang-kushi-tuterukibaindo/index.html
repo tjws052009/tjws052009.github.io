@@ -5,14 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>padrinoを試す - Quick Memos</title>
+  <title>良く使ってるキーバインド - Quick Memos</title>
   <meta name="author" content="Tomo S.">
 
   
-  <meta name="description" content="padrino, ruby, Padrinoを試す ちょっと試しに padrino を使ってみようかと。 1
-2
-3
-$ gem install padrino $ padrino g project hottmp -d activerecord -a mysql -s jquery -e &hellip;">
+  <meta name="description" content="良く使ってるキーバインド 何気にコマンドラインなどで十字キーを使う人を見てて、なんか効率悪そうだなーって思ったので、ホームポジションから動かさずにコマンドラインでカーソルを移動したりする話。 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -21,7 +18,7 @@ $ gem install padrino $ padrino g project hottmp -d activerecord -a mysql -s jqu
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tjws052009.github.io/blog/2014/02/07/padrinowoshi-su">
+  <link rel="canonical" href="http://tjws052009.github.io/blog/2014/02/17/liang-kushi-tuterukibaindo">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/styles.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Quick Memos" type="application/atom+xml">
@@ -114,39 +111,60 @@ $ gem install padrino $ padrino g project hottmp -d activerecord -a mysql -s jqu
   <div class="article-tags">
       
 
-<span class="categories">
-  
-    <a class='category' href='/blog/categories/padrino/'>padrino</a>, <a class='category' href='/blog/categories/ruby/'>ruby,</a>
-  
-</span>
-
 
   </div>
   
     <h1>
-      Padrinoを試す
+      良く使ってるキーバインド
     </h1>
   
 </header>
 <section>
-  <p>ちょっと試しに padrino を使ってみようかと。</p>
+  <p>何気にコマンドラインなどで十字キーを使う人を見てて、なんか効率悪そうだなーって思ったので、ホームポジションから動かさずにコマンドラインでカーソルを移動したりする話。
+カーソル移動にキーボードのホームポジションから指が離すの許されるのなんて小学生までだよねーってのは冗談ですが、リアルに、慣れるとかなりはかどります。</p>
+
+<p>（ちなみに、mac なら普通に色んな場所で使えるのでかなり便利。ブラウザ内でも）</p>
+
+<p>基本的に emacs のキーバインド（おおもとは *nix系のキーバインドなのかな？）から覚えた物なのですが・・・</p>
+
+<hr />
+
+<p>【前提】左小指の一番左のキーが未だ caps
+の人ってさすがにいないですよね。いたら、左小指の一番左のキー（だいたいcapsキー）をctrlキーにマッピングして下さい。小指が幸せになります。
+caps キーが欲しいッて？そんなもん知らん。</p>
+
+<h3>良く使うキーバインド</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ gem install padrino
-</span><span class='line'>
-</span><span class='line'>$ padrino g project hottmp -d activerecord -a mysql -s jquery -e erb -c compass -t rspec</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ctrl + f : 一文字進む
+</span><span class='line'>ctrl + b : 一文字戻る
+</span><span class='line'>ctrl + a : 行頭に戻る
+</span><span class='line'>ctrl + e : 行末に進む
+</span><span class='line'>ctrl + n : 次の行に進む
+</span><span class='line'>ctrl + p : 前の行に戻る
+</span><span class='line'>ctrl + v :  1ページ(1画面？)進む
+</span><span class='line'>crtl + k : 行をヤンク（カットと同じような意味）
+</span><span class='line'>ctrl + y : ヤンクした行をペースト
+</span><span class='line'>ctrl + d : 次の文字を削除
+</span><span class='line'>ctrl + h : 前の文字を削除
+</span><span class='line'>ctrl + t : 文字の位置をひっくり返す</span></code></pre></td></tr></table></div></figure>
 
 
-<p>とりあえずコレで指定した物が入りました。</p>
+<p>後はメタキーを使うキーバインドばっかで使ってなかったのでわかりません！てかコマンドラインだと、
+<code>ctrl + w</code> とかでカーソル以前の文字列を削除するとかあった気もするんですが。なんか、あんまり使わない。。。。ので後は自分で頑張って下さい。</p>
 
-<p>個人的にあんまり Haml　とかのテンプレートエンジンが好きでなくて、erb
-あたりがちょうどしっくりきます。Coffee より jQuery だったり。</p>
-
-<p>これってどうなんでしょうね？</p>
-
-<p>とりあえず、もうちょっといじって、それっぽくなってきたら続報あげます。</p>
+<p>  興味ある方は　emacs keybind とかで調べたら出るかもしれないです。</p>
 
 </section>
 <footer>
@@ -163,7 +181,7 @@ $ gem install padrino $ padrino g project hottmp -d activerecord -a mysql -s jqu
   
 
 
-<time datetime="2014-02-07T14:15:44+09:00" pubdate data-updated="true">Feb 7<span>th</span>, 2014</time>
+<time datetime="2014-02-17T19:38:37+09:00" pubdate data-updated="true">Feb 17<span>th</span>, 2014</time>
   </div>
 </footer>
 
