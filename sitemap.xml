@@ -2,30 +2,36 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://tjws052009.github.io/blog/2014/02/03/my-first-post/</loc>
-        <lastmod>2014-02-03T16:54:22+09:00</lastmod>
+        <lastmod>2014-02-18T18:48:21+09:00</lastmod>
     </url>
     <url>
         <loc>http://tjws052009.github.io/blog/2014/02/04/get-and-post-method-for-sinatra/</loc>
-        <lastmod>2014-02-04T19:14:52+09:00</lastmod>
+        <lastmod>2014-02-18T18:48:21+09:00</lastmod>
     </url>
     <url>
         <loc>http://tjws052009.github.io/blog/2014/02/07/padrinowoshi-su/</loc>
-        <lastmod>2014-02-07T14:28:54+09:00</lastmod>
+        <lastmod>2014-02-18T18:48:21+09:00</lastmod>
     </url>
     <url>
         <loc>http://tjws052009.github.io/blog/2014/02/17/liang-kushi-tuterukibaindo/</loc>
-        <lastmod>2014-02-17T19:41:26+09:00</lastmod>
+        <lastmod>2014-02-18T18:48:21+09:00</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://tjws052009.github.io/blog/2014/02/18/vagrantwoinsutorusitashi-falsebei-wang-lu/
+        </loc>
+        <lastmod>2014-02-18T18:48:21+09:00</lastmod>
     </url>
     <url>
         <loc>http://tjws052009.github.io/robots.txt</loc>
-        <lastmod>2014-02-03T10:30:26+09:00</lastmod>
+        <lastmod>2014-02-18T18:48:21+09:00</lastmod>
     </url>
     <url>
         <loc>http://tjws052009.github.io/</loc>
-        <lastmod>2014-02-17T19:41:26+09:00</lastmod>
+        <lastmod>2014-02-18T18:48:21+09:00</lastmod>
     </url>
     <url>
         <loc>http://tjws052009.github.io/blog/archives/</loc>
-        <lastmod>2014-02-17T19:41:26+09:00</lastmod>
+        <lastmod>2014-02-18T18:48:21+09:00</lastmod>
     </url>
 </urlset>

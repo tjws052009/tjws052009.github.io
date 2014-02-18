@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: cli | Quick Memos]]></title>
+  <link href="http://tjws052009.github.io/blog/categories/cli/atom.xml" rel="self"/>
+  <link href="http://tjws052009.github.io/"/>
+  <updated>2014-02-18T18:48:37+09:00</updated>
+  <id>http://tjws052009.github.io/</id>
+  <author>
+    <name><![CDATA[Tomo S.]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[良く使ってるキーバインド]]></title>
+    <link href="http://tjws052009.github.io/blog/2014/02/17/liang-kushi-tuterukibaindo/"/>
+    <updated>2014-02-17T19:38:37+09:00</updated>
+    <id>http://tjws052009.github.io/blog/2014/02/17/liang-kushi-tuterukibaindo</id>
+    <content type="html"><![CDATA[<p>何気にコマンドラインなどで十字キーを使う人を見てて、なんか効率悪そうだなーって思ったので、ホームポジションから動かさずにコマンドラインでカーソルを移動したりする話。
+カーソル移動にキーボードのホームポジションから指が離すの許されるのなんて小学生までだよねーってのは冗談ですが、リアルに、慣れるとかなりはかどります。</p>
+
+<p>（ちなみに、mac なら普通に色んな場所で使えるのでかなり便利。ブラウザ内でも）</p>
+
+<p>基本的に emacs のキーバインド（おおもとは *nix系のキーバインドなのかな？）から覚えた物なのですが・・・</p>
+
+<hr />
+
+<p>【前提】左小指の一番左のキーが未だ caps
+の人ってさすがにいないですよね。いたら、左小指の一番左のキー（だいたいcapsキー）をctrlキーにマッピングして下さい。小指が幸せになります。
+caps キーが欲しいッて？そんなもん知らん。</p>
+
+<h3>良く使うキーバインド</h3>
+
+<p><code>
+ctrl + f : 一文字進む
+ctrl + b : 一文字戻る
+ctrl + a : 行頭に戻る
+ctrl + e : 行末に進む
+ctrl + n : 次の行に進む
+ctrl + p : 前の行に戻る
+ctrl + v :  1ページ(1画面？)進む
+crtl + k : 行をヤンク（カットと同じような意味）
+ctrl + y : ヤンクした行をペースト
+ctrl + d : 次の文字を削除
+ctrl + h : 前の文字を削除
+ctrl + t : 文字の位置をひっくり返す
+</code></p>
+
+<p>後はメタキーを使うキーバインドばっかで使ってなかったのでわかりません！てかコマンドラインだと、
+<code>ctrl + w</code> とかでカーソル以前の文字列を削除するとかあった気もするんですが。なんか、あんまり使わない。。。。ので後は自分で頑張って下さい。</p>
+
+<p>  興味ある方は　emacs keybind とかで調べたら出るかもしれないです。</p>
+]]></content>
+  </entry>
+  
+</feed>

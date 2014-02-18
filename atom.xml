@@ -4,7 +4,7 @@
   <title><![CDATA[Quick Memos]]></title>
   <link href="http://tjws052009.github.io/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-02-17T19:41:47+09:00</updated>
+  <updated>2014-02-18T18:45:27+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[vagrantをインストールした時の備忘録]]></title>
+    <link href="http://tjws052009.github.io/blog/2014/02/18/vagrantwoinsutorusitashi-falsebei-wang-lu/"/>
+    <updated>2014-02-18T18:45:27+09:00</updated>
+    <id>http://tjws052009.github.io/blog/2014/02/18/vagrantwoinsutorusitashi-falsebei-wang-lu</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[良く使ってるキーバインド]]></title>
