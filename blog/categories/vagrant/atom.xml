@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vagrant, | Quick Memos]]></title>
   <link href="http://tjws052009.github.io/blog/categories/vagrant/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-02-18T18:48:37+09:00</updated>
+  <updated>2014-02-18T18:49:19+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -58,7 +58,7 @@ vagrant box add #{name_of_box} https://github.com/2creatives/vagrant-centos/rele
 
 <p>その時に注意すべき点は、.vagrant ファイルを管理しない事。そのため、下記の.gitignoreを追加しておく。</p>
 
-<p>```:.gitignore</p>
+<p>```</p>
 
 <h1>.gitignore</h1>
 
