@@ -9,8 +9,28 @@
   <meta name="author" content="Tomo S.">
 
   
-  <meta name="description" content="VM, development,, vagrant, Vagrantをインストールした時の備忘録 Vagrant 参考文献
-http://d.hatena.ne.jp/naoya/20130205/1360062070 Vagrant をインストール VirtualBoxをインストールしておく &hellip;">
+  <meta name="description" content="octopress Liquid Exception in Octopress octopressを使ったブログを更新してる時に下記のようなエラーに出くわした。 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22 Liquid &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -70,6 +90,10 @@ http://d.hatena.ne.jp/naoya/20130205/1360062070 Vagrant をインストール Vi
 <ul>
 	
     <li>
+    	<a href="/blog/2014/02/18/liquid-exception-in-octopress/">Liquid Exception in Octopress</a>
+    </li>
+    
+    <li>
     	<a href="/blog/2014/02/18/vagrantwoinsutorusitashi-falsebei-wang-lu/">Vagrantをインストールした時の備忘録</a>
     </li>
     
@@ -83,10 +107,6 @@ http://d.hatena.ne.jp/naoya/20130205/1360062070 Vagrant をインストール Vi
     
     <li>
     	<a href="/blog/2014/02/04/get-and-post-method-for-sinatra/">Get and Post Method for Sinatra</a>
-    </li>
-    
-    <li>
-    	<a href="/blog/2014/02/03/my-first-post/">My First Post</a>
     </li>
     
 </ul>
@@ -120,7 +140,107 @@ http://d.hatena.ne.jp/naoya/20130205/1360062070 Vagrant をインストール Vi
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/vm/'>VM</a>, <a class='category' href='/blog/categories/development/'>development,</a>, <a class='category' href='/blog/categories/vagrant/'>vagrant,</a>
+    <a class='category' href='/blog/categories/octopress/'>octopress</a>
+  
+</span>
+
+
+  </div>
+  
+    <h1><a href="/blog/2014/02/18/liquid-exception-in-octopress/">
+      Liquid Exception in Octopress
+    </a></h1>
+  
+</header>
+<section>
+  <p>octopressを使ったブログを更新してる時に下記のようなエラーに出くわした。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> Liquid Exception: Variable '{{status: result, error: []}' was not properly 
+</span><span class='line'>terminated with regexp: /\}\}/  in
+</span><span class='line'>2014-02-04-get-and-post-method-for-sinatra.markdown
+</span><span class='line'>/home/wolf/.rvm/gems/ruby-1.9.3-p125/gems/liquid-2.3.0/lib/liquid/block.rb:78:in
+</span><span class='line'>`create_variable'
+</span><span class='line'>/home/wolf/.rvm/gems/ruby-1.9.3-p125/gems/liquid-2.3.0/lib/liquid/block.rb:38:in
+</span><span class='line'>`parse'
+</span><span class='line'>/home/wolf/.rvm/gems/ruby-1.9.3-p125/gems/liquid-2.3.0/lib/liquid/document.rb:5:in
+</span><span class='line'>`initialize'
+</span><span class='line'>/home/wolf/.rvm/gems/ruby-1.9.3-p125/gems/liquid-2.3.0/lib/liquid/template.rb:58:in
+</span><span class='line'>`new'
+</span><span class='line'>/home/wolf/.rvm/gems/ruby-1.9.3-p125/gems/liquid-2.3.0/lib/liquid/template.rb:58:in
+</span><span class='line'>`parse'
+</span><span class='line'>/home/wolf/.rvm/gems/ruby-1.9.3-p125/gems/liquid-2.3.0/lib/liquid/template.rb:46:in
+</span><span class='line'>`parse'
+</span><span class='line'>/home/wolf/.rvm/gems/ruby-1.9.3-p125/gems/jekyll-0.12.0/lib/jekyll/convertible.rb:79:in
+</span><span class='line'>`do_layout'
+</span><span class='line'>/home/wolf/prgm/octopress/plugins/post_filters.rb:167:in `do_layout'
+</span><span class='line'>/home/wolf/.rvm/gems/ruby-1.9.3-p125/gems/jekyll-0.12.0/lib/jekyll/post.rb:195:in
+</span><span class='line'>`render'
+</span><span class='line'>/home/wolf/.rvm/gems/ruby-1.9.3-p125/gems/jekyll-0.12.0/lib/jekyll/site.rb:200:in
+</span><span class='line'>`block in render'</span></code></pre></td></tr></table></div></figure>
+
+
+<p>どうもコードをコピーして来た時に、 <code>{{ }}</code>  をくっつけて書いたのが気にくわないらしい。</p>
+
+<p>そのため、octopressでは二重中カッコを書く時は対応方法がふたつあるらしい</p>
+
+<ul>
+<li>1) 2つの中カッコの間にスペースを入れる <code>{ {</code></li>
+<li>2) {% raw %} <code>{{</code> {% endraw %} のようにで文字列を囲む</li>
+</ul>
+
+
+</section>
+<footer>
+  <div class="article-date">
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-18T19:04:11+09:00" pubdate data-updated="true">Feb 18<span>th</span>, 2014</time>
+  </div>
+</footer>
+
+</article>
+
+
+<article>
+	<header>
+  <div class="article-tags">
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/vm/'>VM</a>, <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/vagrant/'>vagrant</a>
   
 </span>
 
@@ -217,7 +337,7 @@ http://d.hatena.ne.jp/naoya/20130205/1360062070 Vagrant をインストール Vi
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/cli/'>cli</a>, <a class='category' href='/blog/categories/emacs/'>emacs,</a>, <a class='category' href='/blog/categories/keybinds/'>keybinds,</a>
+    <a class='category' href='/blog/categories/cli/'>cli</a>, <a class='category' href='/blog/categories/emacs/'>emacs</a>, <a class='category' href='/blog/categories/keybinds/'>keybinds</a>
   
 </span>
 
@@ -305,7 +425,7 @@ caps キーが欲しいッて？そんなもん知らん。</p>
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/padrino/'>padrino</a>, <a class='category' href='/blog/categories/ruby/'>ruby,</a>
+    <a class='category' href='/blog/categories/padrino/'>padrino</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
   
 </span>
 
@@ -366,7 +486,7 @@ caps キーが欲しいッて？そんなもん知らん。</p>
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/get/'>get,</a>, <a class='category' href='/blog/categories/post/'>post</a>, <a class='category' href='/blog/categories/ruby/'>ruby,</a>, <a class='category' href='/blog/categories/sinatra/'>sinatra,</a>
+    <a class='category' href='/blog/categories/get/'>get</a>, <a class='category' href='/blog/categories/post/'>post</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/sinatra/'>sinatra</a>
   
 </span>
 
