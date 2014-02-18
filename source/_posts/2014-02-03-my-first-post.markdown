@@ -6,8 +6,6 @@ comments: true
 categories: git
 ---
 
-## The `git log` command
-
 The `git log` command has a couple of useful flags, but I never can remember what they are.
 
 Therefore, I decided to use the git aliases to create an alias command which
