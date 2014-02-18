@@ -4,7 +4,7 @@
   <title><![CDATA[Category: post | Quick Memos]]></title>
   <link href="http://tjws052009.github.io/blog/categories/post/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-02-18T18:49:19+09:00</updated>
+  <updated>2014-02-18T19:03:23+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -36,14 +36,14 @@ jsonpで返そうと当初は考えていた。</p>
 
 <p>で、こんなコードを書いてみた</p>
 
-<p>```ruby</p>
+<p>```</p>
 
 <h1>sinatra.rb</h1>
 
 <p>post &lsquo;/verify_id&rsquo; do
   result = User.verify_id(params[&lsquo;id&rsquo;])</p>
 
-<p>  return &ldquo;verify(#{{status: result, error: []}.to_json})&rdquo;
+<p>  return &ldquo;verify(#{ {status: result, error: []}.to_json})&rdquo;
 end
 ```</p>
 
@@ -87,7 +87,7 @@ POSTのはずが、GETでパラメーターを送信してたり。（それで 
 
 <p>出来るならやるしないですよね。言うことで、それも含め実装。</p>
 
-<p>```ruby</p>
+<p>```</p>
 
 <h1>sinatra.rb</h1>
 
@@ -109,8 +109,10 @@ end</p>
   result = User.verify_id(params[&lsquo;id&rsquo;])</p>
 
 <p>  # 本当に正しくPOSTされたら json っていう前提で書いてます。gkbr
+  
   return {status: result, error: []}.to_json if request.request_method == &lsquo;POST&rsquo;
-  return &ldquo;verify(#{{status: result, error: []}.to_json})&rdquo;
+  return &ldquo;verify(#{ {status: result, error: []}.to_json})&rdquo;
+  
 end</p>
 
 <p>```</p>

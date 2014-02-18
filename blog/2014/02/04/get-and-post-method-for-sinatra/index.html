@@ -9,7 +9,7 @@
   <meta name="author" content="Tomo S.">
 
   
-  <meta name="description" content="Get and Post Method for Sinatra Sinatraでエンドポイントを用意して、リアルタイムにIDの重複チェックとかしたいと思い、ajaxで使用する前提の物を書いてみた。 id の値をサーバーにPOSTし、結果が json で返ってくるようにしてみた。 &hellip;">
+  <meta name="description" content="get,, post, ruby,, sinatra, Get and Post Method for Sinatra Sinatraでエンドポイントを用意して、リアルタイムにIDの重複チェックとかしたいと思い、ajaxで使用する前提の物を書いてみた。 id の値をサーバーにPOSTし、結果が &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -115,6 +115,12 @@
   <div class="article-tags">
       
 
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/get/'>get,</a>, <a class='category' href='/blog/categories/post/'>post</a>, <a class='category' href='/blog/categories/ruby/'>ruby,</a>, <a class='category' href='/blog/categories/sinatra/'>sinatra,</a>
+  
+</span>
+
 
   </div>
   
@@ -140,19 +146,18 @@ jsonpで返そうと当初は考えていた。</p>
 
 <p>で、こんなコードを書いてみた</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># sinatra.rb</span>
-</span><span class='line'><span class="n">post</span> <span class="s1">&#39;/verify_id&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">verify_id</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="s1">&#39;id&#39;</span><span class="o">]</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># sinatra.rb
+</span><span class='line'>post '/verify_id' do
+</span><span class='line'>  result = User.verify_id(params['id'])
 </span><span class='line'>
-</span><span class='line'>  <span class="k">return</span> <span class="s2">&quot;verify(</span><span class="si">#{</span><span class="p">\{</span><span class="ss">status</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span> <span class="ss">error</span><span class="p">:</span> <span class="o">[]</span><span class="si">}</span><span class="s2">.to_json})&quot;</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>  return "verify(#{ {status: result, error: []}.to_json})"
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
 
 
 
@@ -232,25 +237,29 @@ POSTのはずが、GETでパラメーターを送信してたり。（それで 
 <span class='line-number'>17</span>
 <span class='line-number'>18</span>
 <span class='line-number'>19</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># sinatra.rb</span>
-</span><span class='line'><span class="k">module</span> <span class="nn">Sinatra</span>
-</span><span class='line'>  <span class="k">module</span> <span class="nn">GetOrPost</span>
-</span><span class='line'>    <span class="k">def</span> <span class="nf">get_or_post</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">opts</span><span class="o">=</span><span class="p">{},</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">get</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">opts</span><span class="o">=</span><span class="p">{},</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
-</span><span class='line'>      <span class="n">post</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">opts</span><span class="o">=</span><span class="p">{},</span> <span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="err">#</span> <span class="nx">sinatra</span><span class="p">.</span><span class="nx">rb</span>
+</span><span class='line'><span class="nx">module</span> <span class="nx">Sinatra</span>
+</span><span class='line'>  <span class="nx">module</span> <span class="nx">GetOrPost</span>
+</span><span class='line'>    <span class="nx">def</span> <span class="nx">get_or_post</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="nx">opts</span><span class="o">=</span><span class="p">{},</span> <span class="o">&amp;</span><span class="nx">block</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">get</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="nx">opts</span><span class="o">=</span><span class="p">{},</span> <span class="o">&amp;</span><span class="nx">block</span><span class="p">)</span>
+</span><span class='line'>      <span class="nx">post</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="nx">opts</span><span class="o">=</span><span class="p">{},</span> <span class="o">&amp;</span><span class="nx">block</span><span class="p">)</span>
+</span><span class='line'>    <span class="nx">end</span>
+</span><span class='line'>  <span class="nx">end</span>
+</span><span class='line'><span class="nx">end</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">register</span> <span class="no">GetOrPost</span>
+</span><span class='line'><span class="nx">register</span> <span class="nx">GetOrPost</span>
 </span><span class='line'>
-</span><span class='line'><span class="n">get_or_post</span> <span class="s1">&#39;/verify_id&#39;</span> <span class="k">do</span>
-</span><span class='line'>  <span class="n">result</span> <span class="o">=</span> <span class="no">User</span><span class="o">.</span><span class="n">verify_id</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="s1">&#39;id&#39;</span><span class="o">]</span><span class="p">)</span>
+</span><span class='line'><span class="nx">get_or_post</span> <span class="s1">&#39;/verify_id&#39;</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nx">result</span> <span class="o">=</span> <span class="nx">User</span><span class="p">.</span><span class="nx">verify_id</span><span class="p">(</span><span class="nx">params</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
 </span><span class='line'>
-</span><span class='line'>  <span class="c1"># 本当に正しくPOSTされたら json っていう前提で書いてます。gkbr</span>
-</span><span class='line'>  <span class="k">return</span> <span class="p">{</span><span class="ss">status</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span> <span class="ss">error</span><span class="p">:</span> <span class="o">[]</span><span class="p">}</span><span class="o">.</span><span class="n">to_json</span> <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">request_method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span>
-</span><span class='line'>  <span class="k">return</span> <span class="s2">&quot;verify(</span><span class="si">#{</span><span class="p">\{</span><span class="ss">status</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span> <span class="ss">error</span><span class="p">:</span> <span class="o">[]</span><span class="si">}</span><span class="s2">.to_json})&quot;</span>
-</span><span class='line'><span class="k">end</span>
+</span><span class='line'>  <span class="err">#</span> <span class="err">本当に正しく</span><span class="nx">POST</span><span class="err">されたら</span> <span class="nx">json</span> <span class="err">っていう前提で書いてます。</span><span class="nx">gkbr</span>
+</span><span class='line'>  <span class="p">{</span><span class="o">%</span> <span class="nx">raw</span> <span class="o">%</span><span class="p">}</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">{</span><span class="nx">status</span><span class="o">:</span> <span class="nx">result</span><span class="p">,</span> <span class="nx">error</span><span class="o">:</span> <span class="p">[]}.</span><span class="nx">to_json</span> <span class="k">if</span> <span class="nx">request</span><span class="p">.</span><span class="nx">request_method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span>
+</span><span class='line'>  <span class="k">return</span> <span class="s2">&quot;verify(#{ {status: result, error: []}.to_json})&quot;</span>
+</span><span class='line'>  <span class="p">{</span><span class="o">%</span> <span class="nx">endraw</span> <span class="o">%</span><span class="p">}</span>
+</span><span class='line'><span class="nx">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

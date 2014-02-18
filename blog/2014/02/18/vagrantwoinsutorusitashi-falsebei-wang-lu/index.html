@@ -9,7 +9,8 @@
   <meta name="author" content="Tomo S.">
 
   
-  <meta name="description" content=" Vagrantをインストールした時の備忘録 Feb 18th, 2014 ">
+  <meta name="description" content="VM, development,, vagrant, Vagrantをインストールした時の備忘録 Vagrant 参考文献
+http://d.hatena.ne.jp/naoya/20130205/1360062070 Vagrant をインストール VirtualBoxをインストールしておく &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -115,6 +116,12 @@
   <div class="article-tags">
       
 
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/vm/'>VM</a>, <a class='category' href='/blog/categories/development/'>development,</a>, <a class='category' href='/blog/categories/vagrant/'>vagrant,</a>
+  
+</span>
+
 
   </div>
   
@@ -124,7 +131,60 @@
   
 </header>
 <section>
-  
+  <h1>Vagrant</h1>
+
+<p>参考文献
+<a href="http://d.hatena.ne.jp/naoya/20130205/1360062070">http://d.hatena.ne.jp/naoya/20130205/1360062070</a></p>
+
+<h2>Vagrant をインストール</h2>
+
+<p>VirtualBoxをインストールしておく。(<a href="http://virtualbox.org">http://virtualbox.org</a>)</p>
+
+<p>さらに <a href="http://download.vagrantup.com">http://download.vagrantup.com</a> から必要なインストーラーをダウンロードして、vagrantをインストールしてやる。</p>
+
+<h2>Vagrant のセットアップ</h2>
+
+<h3>Vagrantの大枠となる box を用意する</h3>
+
+<p>なければ、サイトからも落とせる。各OS用に用意されている物でも良い。</p>
+
+<blockquote><p><a href="http://www.vagrantup.com/">http://www.vagrantup.com/</a></p></blockquote>
+
+<p>そして、vagrant のおおもととなる物を準備してやる。サイトは Ubuntuをデフォルトに使っているっぽいが、うちは CentOSのほうがいいので、それを下記のサイトからとってくる(必要なの使ってね)。そして、次に <code>vagrant box</code> に追加してやる。</p>
+
+<blockquote><p><a href="http://www.vagrantbox.es/">http://www.vagrantbox.es/</a></p></blockquote>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant box add #{name_of_box} https://github.com/2creatives/vagrant-centos/releases/download/v6.5.1/centos65-x86_64-20131205.box</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Vagrantの設定を用意する</h3>
+
+<p>次は <code>vagrant init</code> で設定ファイルを作ってやる。基本的にはvagrant用のフォルダを用意して、そこで <code>vagrant init</code> コマンドを叩くと、 Vagrantfile が作成される。
+そこから <code>vagrant up</code> を叩くと vagrantのインスタンスが構築され、仮想環境が立ち上がる。</p>
+
+<h3>Vagrantfile について</h3>
+
+<p>Vagrantfile は vagrant がどのようなマシンが仮想的に作られるべきかを記すファイルになる。</p>
+
+<p>ひとつのプロジェクトにつき、ひとつの Vagrantfile で動き、バージョンコントールされているべきである。</p>
+
+<p>その時に注意すべき点は、.vagrant ファイルを管理しない事。そのため、下記の.gitignoreを追加しておく。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># .gitignore
+</span><span class='line'>--------------
+</span><span class='line'># vagrant gitignore
+</span><span class='line'>.vagrant</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>どうでもいい注意点だが、centos でデフォルトで iptablesがあがってて外部からアクセスしようとして失敗したりしてはまらないようにメモ。</li>
+</ul>
+
 
 </section>
 <footer>
