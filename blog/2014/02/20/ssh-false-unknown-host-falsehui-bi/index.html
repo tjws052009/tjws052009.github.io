@@ -9,10 +9,10 @@
   <meta name="author" content="Tomo S.">
 
   
-  <meta name="description" content="Ssh の Unknown Host の回避 unknown hosts を自動で authorize したい ちょっと引用ですが、以下が出来るらしい 2) If you create ~/.ssh/config with
-Code:
-StrictHostKeyChecking no
-in it &hellip;">
+  <meta name="description" content="Ssh の Unknown Host の回避 unknown hosts を自動で authorize したい 以下の設定で、いちいち unknown host を authorize するために yes/no
+を答えなくていい。 1
+2
+# ~/.ssh/configの該当するHost に &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -129,13 +129,14 @@ in it &hellip;">
 <section>
   <h1>unknown hosts を自動で authorize したい</h1>
 
-<p>ちょっと引用ですが、以下が出来るらしい</p>
+<p>以下の設定で、いちいち unknown host を authorize するために yes/no
+を答えなくていい。</p>
 
-<blockquote><p>2) If you create ~/.ssh/config with
-Code:
-StrictHostKeyChecking no
-in it, it will disable the prompt, and all hosts will be automatically added to
-the known_hosts file.</p></blockquote>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># ~/.ssh/configの該当するHost に
+</span><span class='line'>StrictHostKeyChecking no</span></code></pre></td></tr></table></div></figure>
+
 
 <p>正直言ってあんまり安全では無いことは承知でやるなら上で良さそう。</p>
 
