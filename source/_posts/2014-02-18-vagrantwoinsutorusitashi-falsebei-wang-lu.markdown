@@ -3,7 +3,7 @@ layout: post
 title: "vagrantをインストールした時の備忘録"
 date: 2014-02-18 18:45:27 +0900
 comments: true
-categories: vagrant, development, VM
+categories: vagrant development VM
 ---
 
 #Vagrant
@@ -45,7 +45,7 @@ Vagrantfile は vagrant がどのようなマシンが仮想的に作られる�
 
 その時に注意すべき点は、.vagrant ファイルを管理しない事。そのため、下記の.gitignoreを追加しておく。
 
-```:.gitignore
+```
 # .gitignore
 --------------
 # vagrant gitignore

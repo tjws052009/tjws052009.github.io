@@ -3,7 +3,7 @@ layout: post
 title: "良く使ってるキーバインド"
 date: 2014-02-17 19:38:37 +0900
 comments: true
-categories: emacs, keybinds, cli
+categories: emacs keybinds cli
 ---
 
 何気にコマンドラインなどで十字キーを使う人を見てて、なんか効率悪そうだなーって思ったので、ホームポジションから動かさずにコマンドラインでカーソルを移動したりする話。

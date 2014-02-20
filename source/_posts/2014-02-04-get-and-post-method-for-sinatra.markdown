@@ -3,7 +3,7 @@ layout: post
 title: "get and post method for sinatra"
 date: 2014-02-04 18:17:18 +0900
 comments: true
-categories: sinatra, ruby, get, post
+categories: sinatra ruby get post
 ---
 
 Sinatraでエンドポイントを用意して、リアルタイムにIDの重複チェックとかしたいと思い、ajaxで使用する前提の物を書いてみた。
@@ -12,7 +12,7 @@ id の値をサーバーにPOSTし、結果が json で返ってくるように�
 今回は開発環境でドメインまたいでテストを行えたらいいなと思い
 jsonpで返そうと当初は考えていた。
 
-``` 
+```
 # 頭の中ではこんな感じになればいいなと
 $ curl -d 'id=testtsugi01' http://test.tsugi2009.com/verify_id
 #  => verify({"status": "ok", error: []})
@@ -20,12 +20,12 @@ $ curl -d 'id=testtsugi01' http://test.tsugi2009.com/verify_id
 
 で、こんなコードを書いてみた
 
-```ruby
+```
 # sinatra.rb
 post '/verify_id' do
   result = User.verify_id(params['id'])
 
-  return "verify(#{\{status: result, error: []}.to_json})"
+  {% raw %}return "verify(#{ {status: result, error: []}.to_json})"{% endraw %}
 end
 ```
 
@@ -66,7 +66,7 @@ POSTのはずが、GETでパラメーターを送信してたり。（それで 
 出来るならやるしないですよね。言うことで、それも含め実装。
 
 
-```ruby
+```
 # sinatra.rb
 module Sinatra
   module GetOrPost
@@ -83,8 +83,10 @@ get_or_post '/verify_id' do
   result = User.verify_id(params['id'])
 
   # 本当に正しくPOSTされたら json っていう前提で書いてます。gkbr
+  {% raw %}
   return {status: result, error: []}.to_json if request.request_method == 'POST'
-  return "verify(#{\{status: result, error: []}.to_json})"
+  return "verify(#{ {status: result, error: []}.to_json})"
+  {% endraw %}
 end
 
 ```

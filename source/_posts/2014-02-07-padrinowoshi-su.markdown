@@ -3,7 +3,7 @@ layout: post
 title: "padrinoを試す"
 date: 2014-02-07 14:15:44 +0900
 comments: true
-categories: ruby, padrino
+categories: ruby padrino
 ---
 
 ちょっと試しに padrino を使ってみようかと。
