@@ -4,7 +4,7 @@
   <title><![CDATA[Quick Memos]]></title>
   <link href="http://tjws052009.github.io/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-02-18T19:24:26+09:00</updated>
+  <updated>2014-02-20T13:29:06+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ssh の unknown host の回避]]></title>
+    <link href="http://tjws052009.github.io/blog/2014/02/20/ssh-false-unknown-host-falsehui-bi/"/>
+    <updated>2014-02-20T12:30:20+09:00</updated>
+    <id>http://tjws052009.github.io/blog/2014/02/20/ssh-false-unknown-host-falsehui-bi</id>
+    <content type="html"><![CDATA[<h1>unknown hosts を自動で authorize したい</h1>
+
+<p>ちょっと引用ですが、以下が出来るらしい</p>
+
+<blockquote><p>2) If you create ~/.ssh/config with
+Code:
+StrictHostKeyChecking no
+in it, it will disable the prompt, and all hosts will be automatically added to
+the known_hosts file.</p></blockquote>
+
+<p>正直言ってあんまり安全では無いことは承知でやるなら上で良さそう。</p>
+
+<p>もしもうちょっとちゃんとやるなら、下記のページみたいな物が必要かもしれないですね。
+<a href="https://sethvargo.com/add-ssh-known-hosts-with-chef/">Add SSH Known Hosts with Chef</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Liquid Exception in octopress]]></title>

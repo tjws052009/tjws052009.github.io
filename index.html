@@ -9,28 +9,10 @@
   <meta name="author" content="Tomo S.">
 
   
-  <meta name="description" content="octopress Liquid Exception in Octopress octopressを使ったブログを更新してる時に下記のようなエラーに出くわした。 1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22 Liquid &hellip;">
+  <meta name="description" content="Ssh の Unknown Host の回避 unknown hosts を自動で authorize したい ちょっと引用ですが、以下が出来るらしい 2) If you create ~/.ssh/config with
+Code:
+StrictHostKeyChecking no
+in it &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,6 +72,10 @@
 <ul>
 	
     <li>
+    	<a href="/blog/2014/02/20/ssh-false-unknown-host-falsehui-bi/">Ssh の Unknown Host の回避</a>
+    </li>
+    
+    <li>
     	<a href="/blog/2014/02/18/liquid-exception-in-octopress/">Liquid Exception in Octopress</a>
     </li>
     
@@ -103,10 +89,6 @@
     
     <li>
     	<a href="/blog/2014/02/07/padrinowoshi-su/">Padrinoを試す</a>
-    </li>
-    
-    <li>
-    	<a href="/blog/2014/02/04/get-and-post-method-for-sinatra/">Get and Post Method for Sinatra</a>
     </li>
     
 </ul>
@@ -131,6 +113,57 @@
 		</aside>
 		
       
+
+
+<article>
+	<header>
+  <div class="article-tags">
+      
+
+
+  </div>
+  
+    <h1><a href="/blog/2014/02/20/ssh-false-unknown-host-falsehui-bi/">
+      Ssh の Unknown Host の回避
+    </a></h1>
+  
+</header>
+<section>
+  <h1>unknown hosts を自動で authorize したい</h1>
+
+<p>ちょっと引用ですが、以下が出来るらしい</p>
+
+<blockquote><p>2) If you create ~/.ssh/config with
+Code:
+StrictHostKeyChecking no
+in it, it will disable the prompt, and all hosts will be automatically added to
+the known_hosts file.</p></blockquote>
+
+<p>正直言ってあんまり安全では無いことは承知でやるなら上で良さそう。</p>
+
+<p>もしもうちょっとちゃんとやるなら、下記のページみたいな物が必要かもしれないですね。
+<a href="https://sethvargo.com/add-ssh-known-hosts-with-chef/">Add SSH Known Hosts with Chef</a></p>
+
+</section>
+<footer>
+  <div class="article-date">
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-20T12:30:20+09:00" pubdate data-updated="true">Feb 20<span>th</span>, 2014</time>
+  </div>
+</footer>
+
+</article>
 
 
 <article>
