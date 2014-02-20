@@ -4,7 +4,7 @@
   <title><![CDATA[Quick Memos]]></title>
   <link href="http://tjws052009.github.io/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-02-20T17:53:51+09:00</updated>
+  <updated>2014-02-20T17:55:21+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -31,8 +31,9 @@
 
 <p>正直言ってあんまり安全では無いことは承知でやるなら上で良さそう。</p>
 
-<p>もしもうちょっとちゃんとやるなら、下記のページみたいな物が必要かもしれないですね。
-<a href="https://sethvargo.com/add-ssh-known-hosts-with-chef/">Add SSH Known Hosts with Chef</a></p>
+<p>もしもうちょっとちゃんとやるなら、下記のページみたいな物が必要かもしれないですね。</p>
+
+<p><a href="https://sethvargo.com/add-ssh-known-hosts-with-chef/">Add SSH Known Hosts with Chef</a></p>
 ]]></content>
   </entry>
   
