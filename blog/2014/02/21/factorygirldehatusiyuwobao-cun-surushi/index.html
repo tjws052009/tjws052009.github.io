@@ -5,11 +5,17 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: padrino - Quick Memos</title>
+  <title>FactoryGirlでハッシュを保存する時 - Quick Memos</title>
   <meta name="author" content="Tomo S.">
 
   
-  <meta name="description" content="Category: padrino">
+  <meta name="description" content="FactoryGirl, Ruby FactoryGirlでハッシュを保存する時 理解不足だからかもしれないですが、FactoryGirlでオブジェクトを作る時に Hash
+を値に使おうとした時に、怒られた。 1
+2
+3
+4
+5
+factory :obj, class: Model:: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +24,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tjws052009.github.ioblog/categories/padrino">
+  <link rel="canonical" href="http://tjws052009.github.io/blog/2014/02/21/factorygirldehatusiyuwobao-cun-surushi">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/styles.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Quick Memos" type="application/atom+xml">
@@ -121,36 +127,80 @@
 		</aside>
 		
       <div>
-<article role="article">
-  
-  <header>
-    <h1 class="entry-title">Category: Padrino</h1>
-  </header>
-  
-  <div id="blog-archives" class="category">
-
-
-
-  
-  <h2>2014</h2>
-
 <article>
-  
-<h1><a href="/blog/2014/02/07/padrinowoshi-su/">Padrinoを試す</a></h1>
-<time datetime="2014-02-07T14:15:44+09:00" pubdate><span class='month'>Feb</span> <span class='day'>07</span> <span class='year'>2014</span></time>
+	<header>
+  <div class="article-tags">
+      
 
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/factorygirl/'>FactoryGirl</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+  </div>
+  
+    <h1>
+      FactoryGirlでハッシュを保存する時
+    </h1>
+  
+</header>
+<section>
+  <p>理解不足だからかもしれないですが、FactoryGirlでオブジェクトを作る時に Hash
+を値に使おうとした時に、怒られた。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>factory :obj, class: Model::Object do
+</span><span class='line'>  obj_attr1 1
+</span><span class='line'>  obj_attr2 'ほげ'
+</span><span class='line'>  obj_hash_str {:spot1 =&gt; 0, :spot2 =&gt; 0, :spot3 =&gt; 0, :spot4 =&gt; 0}.to_json
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下記のように、カッコに囲んで書けばいいみたい。なぜにかちょっとわからないんですが、ブロックとして処理しようとしてたんですかね？</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>factory :obj, class: Model::Object do
+</span><span class='line'>  obj_attr1 1
+</span><span class='line'>  obj_attr2 'ほげ'
+</span><span class='line'>  obj_hash_str ({:spot1 =&gt; 0, :spot2 =&gt; 0, :spot3 =&gt; 0, :spot4 =&gt; 0}).to_json
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</section>
 <footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/padrino/'>padrino</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a></span>
+  <div class="article-date">
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-21T15:26:17+09:00" pubdate data-updated="true">Feb 21<span>st</span>, 2014</time>
+  </div>
 </footer>
 
-
-</article>
-
-</div>
-
-  
+	
 </article>
 </div>
+
     </div>
   </div>
   <footer class="main-footer">

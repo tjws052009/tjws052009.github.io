@@ -9,10 +9,13 @@
   <meta name="author" content="Tomo S.">
 
   
-  <meta name="description" content="Ssh の Unknown Host の回避 unknown hosts を自動で authorize したい 以下の設定で、いちいち unknown host を authorize するために yes/no
-を答えなくていい。 1
+  <meta name="description" content="FactoryGirl, Ruby FactoryGirlでハッシュを保存する時 理解不足だからかもしれないですが、FactoryGirlでオブジェクトを作る時に Hash
+を値に使おうとした時に、怒られた。 1
 2
-# ~/.ssh/configの該当するHost に &hellip;">
+3
+4
+5
+factory :obj, class: Model:: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +86,10 @@
 <ul>
 	
     <li>
+    	<a href="/blog/2014/02/21/factorygirldehatusiyuwobao-cun-surushi/">FactoryGirlでハッシュを保存する時</a>
+    </li>
+    
+    <li>
     	<a href="/blog/2014/02/20/ssh-false-unknown-host-falsehui-bi/">Ssh の Unknown Host の回避</a>
     </li>
     
@@ -96,10 +103,6 @@
     
     <li>
     	<a href="/blog/2014/02/17/liang-kushi-tuterukibaindo/">良く使ってるキーバインド</a>
-    </li>
-    
-    <li>
-    	<a href="/blog/2014/02/07/padrinowoshi-su/">Padrinoを試す</a>
     </li>
     
 </ul>
@@ -124,6 +127,79 @@
 		</aside>
 		
       
+
+
+<article>
+	<header>
+  <div class="article-tags">
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/factorygirl/'>FactoryGirl</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+  </div>
+  
+    <h1><a href="/blog/2014/02/21/factorygirldehatusiyuwobao-cun-surushi/">
+      FactoryGirlでハッシュを保存する時
+    </a></h1>
+  
+</header>
+<section>
+  <p>理解不足だからかもしれないですが、FactoryGirlでオブジェクトを作る時に Hash
+を値に使おうとした時に、怒られた。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>factory :obj, class: Model::Object do
+</span><span class='line'>  obj_attr1 1
+</span><span class='line'>  obj_attr2 'ほげ'
+</span><span class='line'>  obj_hash_str {:spot1 =&gt; 0, :spot2 =&gt; 0, :spot3 =&gt; 0, :spot4 =&gt; 0}.to_json
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下記のように、カッコに囲んで書けばいいみたい。なぜにかちょっとわからないんですが、ブロックとして処理しようとしてたんですかね？</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>factory :obj, class: Model::Object do
+</span><span class='line'>  obj_attr1 1
+</span><span class='line'>  obj_attr2 'ほげ'
+</span><span class='line'>  obj_hash_str ({:spot1 =&gt; 0, :spot2 =&gt; 0, :spot3 =&gt; 0, :spot4 =&gt; 0}).to_json
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</section>
+<footer>
+  <div class="article-date">
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-21T15:26:17+09:00" pubdate data-updated="true">Feb 21<span>st</span>, 2014</time>
+  </div>
+</footer>
+
+</article>
 
 
 <article>

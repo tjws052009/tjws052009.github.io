@@ -4,7 +4,7 @@
   <title><![CDATA[Quick Memos]]></title>
   <link href="http://tjws052009.github.io/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-02-20T18:40:28+09:00</updated>
+  <updated>2014-02-21T15:47:45+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[FactoryGirlでハッシュを保存する時]]></title>
+    <link href="http://tjws052009.github.io/blog/2014/02/21/factorygirldehatusiyuwobao-cun-surushi/"/>
+    <updated>2014-02-21T15:26:17+09:00</updated>
+    <id>http://tjws052009.github.io/blog/2014/02/21/factorygirldehatusiyuwobao-cun-surushi</id>
+    <content type="html"><![CDATA[<p>理解不足だからかもしれないですが、FactoryGirlでオブジェクトを作る時に Hash
+を値に使おうとした時に、怒られた。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>factory :obj, class: Model::Object do
+</span><span class='line'>  obj_attr1 1
+</span><span class='line'>  obj_attr2 'ほげ'
+</span><span class='line'>  obj_hash_str {:spot1 =&gt; 0, :spot2 =&gt; 0, :spot3 =&gt; 0, :spot4 =&gt; 0}.to_json
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>下記のように、カッコに囲んで書けばいいみたい。なぜにかちょっとわからないんですが、ブロックとして処理しようとしてたんですかね？</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>factory :obj, class: Model::Object do
+</span><span class='line'>  obj_attr1 1
+</span><span class='line'>  obj_attr2 'ほげ'
+</span><span class='line'>  obj_hash_str ({:spot1 =&gt; 0, :spot2 =&gt; 0, :spot3 =&gt; 0, :spot4 =&gt; 0}).to_json
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ssh の unknown host の回避]]></title>
