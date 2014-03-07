@@ -9,7 +9,7 @@
   <meta name="author" content="Tomo S.">
 
   
-  <meta name="description" content="erb, ruby Rubyのbindingをやっと理解した話し 1
+  <meta name="description" content="erb, ruby Rubyのbindingをやっと理解した話し 自分で ERB を使ってて binding を良くわからず使ってたので、自分用にメモ 1
 2
 3
 4
@@ -35,16 +35,7 @@
 24
 25
 26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-#-*- coding:utf-8 &hellip;">
+27 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,6 +56,17 @@
   <script src="/javascripts/ah-blue.js"></script>
   
   
+  <script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-32994899-1', 'tsugi2009.com');
+    ga('send', 'pageview');
+
+  </script>
+
 
 </head> 
 
@@ -165,7 +167,9 @@
   
 </header>
 <section>
-  <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+  <p>自分で ERB を使ってて binding を良くわからず使ってたので、自分用にメモ</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -244,6 +248,27 @@
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= hoge %&gt;</span>
 </span><span class='line'><span class="sx">&lt;%=</span> <span class="vi">@hoge</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>上のコードを実行すると、bindingによる変数の受け渡しがどう動くか見れるかと思います。</p>
+
+<p>instance_eval にローカル変数の <code>hoge</code> と、インスタンス変数の <code>@hoge</code> の受け渡しが色々と違う。当たり前だけど、こういう事ねと初めて理解した。</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">erb</span><span class="o">.</span><span class="n">result</span>
+</span><span class='line'><span class="mi">111</span>
+</span><span class='line'><span class="mi">333</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">erb</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="nb">binding</span><span class="p">)</span>
+</span><span class='line'><span class="mi">111</span>
+</span><span class='line'><span class="mi">444</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

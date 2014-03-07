@@ -4,7 +4,7 @@
   <title><![CDATA[Category: erb | Quick Memos]]></title>
   <link href="http://tjws052009.github.io/blog/categories/erb/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-03-07T19:20:22+09:00</updated>
+  <updated>2014-03-07T19:20:46+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -20,7 +20,7 @@
     <id>http://tjws052009.github.io/blog/2014/03/07/rubyfalsebindingwoyatutoli-jie-sitahua-si</id>
     <content type="html"><![CDATA[<p>自分で ERB を使ってて binding を良くわからず使ってたので、自分用にメモ</p>
 
-<p>```ruby:test.rb</p>
+<p>```ruby</p>
 
 <h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
 
@@ -67,7 +67,7 @@ end</p>
 end
 ```</p>
 
-<p><code>ruby:test.txt
+<p><code>ruby
 &lt;%= hoge %&gt;
 &lt;%= @hoge %&gt;
 </code></p>
