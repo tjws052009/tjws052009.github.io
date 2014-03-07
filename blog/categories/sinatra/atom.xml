@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sinatra | Quick Memos]]></title>
   <link href="http://tjws052009.github.io/blog/categories/sinatra/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-02-21T15:47:45+09:00</updated>
+  <updated>2014-03-07T19:20:22+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -43,7 +43,7 @@ jsonpで返そうと当初は考えていた。</p>
 <p>post &lsquo;/verify_id&rsquo; do
   result = User.verify_id(params[&lsquo;id&rsquo;])</p>
 
-<p>  return &ldquo;verify(#{ {status: result, error: []}.to_json})&rdquo;
+<p>  {% raw %}return &ldquo;verify(#{ {status: result, error: []}.to_json})&rdquo;{% endraw %}
 end
 ```</p>
 
@@ -109,10 +109,10 @@ end</p>
   result = User.verify_id(params[&lsquo;id&rsquo;])</p>
 
 <p>  # 本当に正しくPOSTされたら json っていう前提で書いてます。gkbr
-  
+  {% raw %}
   return {status: result, error: []}.to_json if request.request_method == &lsquo;POST&rsquo;
   return &ldquo;verify(#{ {status: result, error: []}.to_json})&rdquo;
-  
+  {% endraw %}
 end</p>
 
 <p>```</p>

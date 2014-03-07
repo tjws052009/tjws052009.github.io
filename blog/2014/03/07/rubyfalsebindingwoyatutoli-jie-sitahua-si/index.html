@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>rubyのbindingをやっと理解した話し - Quick Memos</title>
+  <meta name="author" content="Tomo S.">
+
+  
+  <meta name="description" content="erb, ruby Rubyのbindingをやっと理解した話し 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+#-*- coding:utf-8 &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tjws052009.github.io/blog/2014/03/07/rubyfalsebindingwoyatutoli-jie-sitahua-si">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/styles.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Quick Memos" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <script src="/javascripts/jquery.sidr.min.js"></script>
+  <script src="/javascripts/ah-blue.js"></script>
+  
+  
+
+</head> 
+
+<body   >
+  <div class="aux-container">
+    <a id="nav-toggle" href="#sidr"></a>
+    <a id="search-toggle"></a>
+</div>
+
+<header class="header-container clearfix">
+<!-- <a href="/"><img src="/images/ah-frame.svg" onerror="this.onerror=null; this.src='ah-frame.png'"></a> -->
+  <h1 style='text-align: center; margin: 20px auto 20px; font-size: 2.5em;'><a href="/">QUICK MEMOS</a></h1>
+</header>
+
+
+  <div class="main-container">
+    <div class="main wrapper clearfix">
+    	
+    	<aside>
+			
+			  	<div class="search-container">
+					<form action="http://google.com/search" method="get">
+						<fieldset role="search">
+							<input type="hidden" name="q" value="site:blog.alexharr.is" />
+							<input class="search-field" type="text" name="q" results="0" placeholder=""/>
+							<input class="submit" type="submit" value=""/>
+						</fieldset>
+					</form>
+				</div>
+			
+		  <div id="main-nav">
+    <nav>
+        <ul>
+        	<li>
+        		
+					<h3>Recent Posts</h3>
+<ul>
+	
+    <li>
+    	<a href="/blog/2014/03/07/rubyfalsebindingwoyatutoli-jie-sitahua-si/">Rubyのbindingをやっと理解した話し</a>
+    </li>
+    
+    <li>
+    	<a href="/blog/2014/02/21/factorygirldehatusiyuwobao-cun-surushi/">FactoryGirlでハッシュを保存する時</a>
+    </li>
+    
+    <li>
+    	<a href="/blog/2014/02/20/ssh-false-unknown-host-falsehui-bi/">Ssh の Unknown Host の回避</a>
+    </li>
+    
+    <li>
+    	<a href="/blog/2014/02/18/liquid-exception-in-octopress/">Liquid Exception in Octopress</a>
+    </li>
+    
+    <li>
+    	<a href="/blog/2014/02/18/vagrantwoinsutorusitashi-falsebei-wang-lu/">Vagrantをインストールした時の備忘録</a>
+    </li>
+    
+</ul>
+
+
+
+
+
+				
+        	</li>
+        	<li>
+        		<ul>
+              <li>Projects - <a href="http://tsugi2009.com" target="_blank">tsugi2009.com</a>
+        			<li>Github - <a href="http://www.github.com/tjws052009" target="_blank">github.com/tjws052009</a></li>
+              <li>Twitter - <a href="http://www.twitter.com/tsugi2009" target="_blank">@tsugi2009</a></li>
+        		</ul>
+        	</li>
+        </ul>
+    </nav>
+</div>
+
+		</aside>
+		
+      <div>
+<article>
+	<header>
+  <div class="article-tags">
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/erb/'>erb</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+  
+</span>
+
+
+  </div>
+  
+    <h1>
+      Rubyのbindingをやっと理解した話し
+    </h1>
+  
+</header>
+<section>
+  <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#-*- coding:utf-8 -*-</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1"># Ruby skeleton file</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;erb&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Huga</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">get_binding</span>
+</span><span class='line'>    <span class="nb">binding</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">hoge</span> <span class="o">=</span> <span class="mi">222</span>
+</span><span class='line'>    <span class="vi">@hoge</span> <span class="o">=</span> <span class="mi">444</span>
+</span><span class='line'>    <span class="n">res</span> <span class="o">=</span> <span class="nb">instance_eval</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">puts</span> <span class="n">res</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">erb</span> <span class="o">=</span> <span class="no">ERB</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;test.txt&#39;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">hoge</span> <span class="o">=</span> <span class="mi">111</span>
+</span><span class='line'><span class="vi">@hoge</span> <span class="o">=</span> <span class="mi">333</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">test</span> <span class="o">=</span> <span class="no">Huga</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;erb.result&quot;</span>
+</span><span class='line'>  <span class="n">erb</span><span class="o">.</span><span class="n">result</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">test2</span> <span class="o">=</span> <span class="no">Huga</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;erb.result(binding)&quot;</span>
+</span><span class='line'>  <span class="n">erb</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="nb">binding</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= hoge %&gt;</span>
+</span><span class='line'><span class="sx">&lt;%=</span> <span class="vi">@hoge</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+</section>
+<footer>
+  <div class="article-date">
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-07T18:58:12+09:00" pubdate data-updated="true">Mar 7<span>th</span>, 2014</time>
+  </div>
+</footer>
+
+	
+</article>
+</div>
+
+    </div>
+  </div>
+  <footer class="main-footer">
+	<section class="interior-footer">
+		<span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+	</section>
+</footer>
+
+
+  
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+</body>
+</html>

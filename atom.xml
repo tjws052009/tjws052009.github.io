@@ -4,7 +4,7 @@
   <title><![CDATA[Quick Memos]]></title>
   <link href="http://tjws052009.github.io/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-02-21T15:47:45+09:00</updated>
+  <updated>2014-03-07T19:10:01+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -12,6 +12,95 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[rubyのbindingをやっと理解した話し]]></title>
+    <link href="http://tjws052009.github.io/blog/2014/03/07/rubyfalsebindingwoyatutoli-jie-sitahua-si/"/>
+    <updated>2014-03-07T18:58:12+09:00</updated>
+    <id>http://tjws052009.github.io/blog/2014/03/07/rubyfalsebindingwoyatutoli-jie-sitahua-si</id>
+    <content type="html"><![CDATA[<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1">#-*- coding:utf-8 -*-</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="c1"># Ruby skeleton file</span>
+</span><span class='line'><span class="c1">#</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;erb&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">class</span> <span class="nc">Huga</span>
+</span><span class='line'>  <span class="k">def</span> <span class="nc">self</span><span class="o">.</span><span class="nf">get_binding</span>
+</span><span class='line'>    <span class="nb">binding</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">def</span> <span class="nf">initialize</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">hoge</span> <span class="o">=</span> <span class="mi">222</span>
+</span><span class='line'>    <span class="vi">@hoge</span> <span class="o">=</span> <span class="mi">444</span>
+</span><span class='line'>    <span class="n">res</span> <span class="o">=</span> <span class="nb">instance_eval</span><span class="p">(</span><span class="o">&amp;</span><span class="n">block</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nb">puts</span> <span class="n">res</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'><span class="n">erb</span> <span class="o">=</span> <span class="no">ERB</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="no">File</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;test.txt&#39;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">hoge</span> <span class="o">=</span> <span class="mi">111</span>
+</span><span class='line'><span class="vi">@hoge</span> <span class="o">=</span> <span class="mi">333</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">test</span> <span class="o">=</span> <span class="no">Huga</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;erb.result&quot;</span>
+</span><span class='line'>  <span class="n">erb</span><span class="o">.</span><span class="n">result</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">test2</span> <span class="o">=</span> <span class="no">Huga</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;erb.result(binding)&quot;</span>
+</span><span class='line'>  <span class="n">erb</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="nb">binding</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="o">&lt;</span><span class="sx">%= hoge %&gt;</span>
+</span><span class='line'><span class="sx">&lt;%=</span> <span class="vi">@hoge</span> <span class="o">%&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[FactoryGirlでハッシュを保存する時]]></title>

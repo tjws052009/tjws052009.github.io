@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: erb | Quick Memos]]></title>
+  <link href="http://tjws052009.github.io/blog/categories/erb/atom.xml" rel="self"/>
+  <link href="http://tjws052009.github.io/"/>
+  <updated>2014-03-07T19:20:22+09:00</updated>
+  <id>http://tjws052009.github.io/</id>
+  <author>
+    <name><![CDATA[Tomo S.]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[rubyのbindingをやっと理解した話し]]></title>
+    <link href="http://tjws052009.github.io/blog/2014/03/07/rubyfalsebindingwoyatutoli-jie-sitahua-si/"/>
+    <updated>2014-03-07T18:58:12+09:00</updated>
+    <id>http://tjws052009.github.io/blog/2014/03/07/rubyfalsebindingwoyatutoli-jie-sitahua-si</id>
+    <content type="html"><![CDATA[<p>自分で ERB を使ってて binding を良くわからず使ってたので、自分用にメモ</p>
+
+<p>```ruby:test.rb</p>
+
+<h1>&ndash;<em>&ndash; coding:utf-8 &ndash;</em>&ndash;</h1>
+
+<p>#</p>
+
+<h1>Ruby skeleton file</h1>
+
+<p>#
+require &lsquo;erb&rsquo;</p>
+
+<p>class Huga
+  def self.get_binding</p>
+
+<pre><code>binding
+</code></pre>
+
+<p>  end</p>
+
+<p>  def initialize(&amp;block)</p>
+
+<pre><code>hoge = 222
+@hoge = 444
+res = instance_eval(&amp;block)
+
+puts res
+</code></pre>
+
+<p>  end
+end</p>
+
+<p>erb = ERB.new(File.read(&lsquo;test.txt&rsquo;))</p>
+
+<p>hoge = 111
+@hoge = 333</p>
+
+<p>test = Huga.new do
+  puts &ldquo;erb.result&rdquo;
+  erb.result
+end</p>
+
+<p>test2 = Huga.new do
+  puts &ldquo;erb.result(binding)&rdquo;
+  erb.result(binding)
+end
+```</p>
+
+<p><code>ruby:test.txt
+&lt;%= hoge %&gt;
+&lt;%= @hoge %&gt;
+</code></p>
+
+<p>上のコードを実行すると、bindingによる変数の受け渡しがどう動くか見れるかと思います。</p>
+
+<p>instance_eval にローカル変数の <code>hoge</code> と、インスタンス変数の <code>@hoge</code> の受け渡しが色々と違う。当たり前だけど、こういう事ねと初めて理解した。</p>
+
+<p>```
+erb.result
+111
+333</p>
+
+<p>erb.result(binding)
+111
+444
+```</p>
+]]></content>
+  </entry>
+  
+</feed>
