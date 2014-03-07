@@ -4,7 +4,7 @@
   <title><![CDATA[Category: erb | Quick Memos]]></title>
   <link href="http://tjws052009.github.io/blog/categories/erb/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-03-07T19:20:46+09:00</updated>
+  <updated>2014-03-07T19:24:54+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -75,6 +75,10 @@ end
 <p>上のコードを実行すると、bindingによる変数の受け渡しがどう動くか見れるかと思います。</p>
 
 <p>instance_eval にローカル変数の <code>hoge</code> と、インスタンス変数の <code>@hoge</code> の受け渡しが色々と違う。当たり前だけど、こういう事ねと初めて理解した。</p>
+
+<p>binding を明示的に実行すると呼び出されるクラス下のスコープを参照するようにします。
+Hugaクラスで <code>hoge</code> を定義しても、そちらの <code>hoge</code> は見ないよう。
+Hugaクラスの <code>@hoge</code> は、さすがに、 instance_eval で反映された状態で出る。</p>
 
 <p>```
 erb.result

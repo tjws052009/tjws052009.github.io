@@ -56,17 +56,6 @@
   <script src="/javascripts/ah-blue.js"></script>
   
   
-  <script type="text/javascript">
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-32994899-1', 'tsugi2009.com');
-    ga('send', 'pageview');
-
-  </script>
-
 
 </head> 
 
@@ -254,6 +243,10 @@
 <p>上のコードを実行すると、bindingによる変数の受け渡しがどう動くか見れるかと思います。</p>
 
 <p>instance_eval にローカル変数の <code>hoge</code> と、インスタンス変数の <code>@hoge</code> の受け渡しが色々と違う。当たり前だけど、こういう事ねと初めて理解した。</p>
+
+<p>binding を明示的に実行すると呼び出されるクラス下のスコープを参照するようにします。
+Hugaクラスで <code>hoge</code> を定義しても、そちらの <code>hoge</code> は見ないよう。
+Hugaクラスの <code>@hoge</code> は、さすがに、 instance_eval で反映された状態で出る。</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
