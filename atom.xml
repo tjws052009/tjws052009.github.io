@@ -4,7 +4,7 @@
   <title><![CDATA[Quick Memos]]></title>
   <link href="http://tjws052009.github.io/atom.xml" rel="self"/>
   <link href="http://tjws052009.github.io/"/>
-  <updated>2014-03-26T15:50:32+09:00</updated>
+  <updated>2014-03-26T16:18:24+09:00</updated>
   <id>http://tjws052009.github.io/</id>
   <author>
     <name><![CDATA[Tomo S.]]></name>
@@ -14,11 +14,45 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Dockerちょっと試す]]></title>
+    <title type="html"><![CDATA[CentOS6.2上でDockerを試す]]></title>
     <link href="http://tjws052009.github.io/blog/2014/03/26/dockertiyotutoshi-su/"/>
     <updated>2014-03-26T14:52:47+09:00</updated>
     <id>http://tjws052009.github.io/blog/2014/03/26/dockertiyotutoshi-su</id>
-    <content type="html"><![CDATA[<p>@TODO</p>
+    <content type="html"><![CDATA[<p>CentOS6.2にdockerを入れてみた。</p>
+
+<p>完全に理解したわけではないけど、とりあえず動いたからメモ。</p>
+
+<p>とりあえずインストール</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo yum install -y docker-io</span></code></pre></td></tr></table></div></figure>
+
+
+<p>そしてdocker を起動、仮想環境でコマンドを実行する。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>sudo /sbin/service docker start
+</span><span class='line'>
+</span><span class='line'># ユーザーを docker グループに参加させると dockerを叩く時に sudo が必要無くなる。
+</span><span class='line'>sudo usermod -a -G docker #{ユーザー名}
+</span><span class='line'>
+</span><span class='line'>docker run centos echo "Hello, world!"
+</span><span class='line'>
+</span><span class='line'># =&gt; Hello, world!</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ここまでなら <a href="https://www.docker.io/">https://www.docker.io/</a> のサイトに書いているので特に目新しい事はないけど・・・</p>
+
+<p>ここから先を埋められる日が来るか・・・</p>
+
+<p>@TODO</p>
 ]]></content>
   </entry>
   

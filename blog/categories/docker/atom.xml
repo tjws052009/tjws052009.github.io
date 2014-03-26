@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: docker | Quick Memos]]></title>
+  <link href="http://tjws052009.github.io/blog/categories/docker/atom.xml" rel="self"/>
+  <link href="http://tjws052009.github.io/"/>
+  <updated>2014-03-26T16:18:24+09:00</updated>
+  <id>http://tjws052009.github.io/</id>
+  <author>
+    <name><![CDATA[Tomo S.]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[CentOS6.2上でDockerを試す]]></title>
+    <link href="http://tjws052009.github.io/blog/2014/03/26/dockertiyotutoshi-su/"/>
+    <updated>2014-03-26T14:52:47+09:00</updated>
+    <id>http://tjws052009.github.io/blog/2014/03/26/dockertiyotutoshi-su</id>
+    <content type="html"><![CDATA[<p>CentOS6.2にdockerを入れてみた。</p>
+
+<p>完全に理解したわけではないけど、とりあえず動いたからメモ。</p>
+
+<p>とりあえずインストール</p>
+
+<p><code>
+sudo yum install -y docker-io
+</code></p>
+
+<p>そしてdocker を起動、仮想環境でコマンドを実行する。
+```
+sudo /sbin/service docker start</p>
+
+<h1>ユーザーを docker グループに参加させると dockerを叩く時に sudo が必要無くなる。</h1>
+
+<p>sudo usermod -a -G docker #{ユーザー名}</p>
+
+<p>docker run centos echo &ldquo;Hello, world!&rdquo;</p>
+
+<h1>=> Hello, world!</h1>
+
+<p>```</p>
+
+<p>ここまでなら <a href="https://www.docker.io/">https://www.docker.io/</a> のサイトに書いているので特に目新しい事はないけど・・・</p>
+
+<p>ここから先を埋められる日が来るか・・・</p>
+
+<p>@TODO</p>
+]]></content>
+  </entry>
+  
+</feed>
